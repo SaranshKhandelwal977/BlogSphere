@@ -8,7 +8,7 @@ export function signup(username,email,password,confirmPassword,navigate) {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
-      const response = await apiConnector("POST", "http://localhost:4000/api/signup", {
+      const response = await apiConnector("POST", "https://blogsphere-kqf6.onrender.com/api/signup", {
         username,
         email,
         password,
@@ -37,7 +37,7 @@ export function login(content, password, navigate) {
     dispatch(setLoading(true))
     try {
         console.log("hello1")
-      const response = await apiConnector("POST", "http://localhost:4000/api/login", {
+      const response = await apiConnector("POST", "https://blogsphere-kqf6.onrender.com/api/login", {
         content,
         password,
       })
@@ -67,7 +67,7 @@ export const checkUsername = async(username) => {
       const toastId = toast.loading("Loading...")
       let result = null;
       try {
-        const response = await apiConnector("POST", "http://localhost:4000/api/check-username", {username})
+        const response = await apiConnector("POST", "https://blogsphere-kqf6.onrender.com/api/check-username", {username})
         console.log("check username api response: ", response)
   
         if (!response.data.success) {
@@ -86,7 +86,7 @@ export function createPost(title,content, token, navigate) {
       const toastId = toast.loading("Loading...")
       dispatch(setLoading(true))
       try {
-        const response = await apiConnector("POST", "http://localhost:4000/api/create-post", {title,content}, {Authorization: `Bearer ${token}`})
+        const response = await apiConnector("POST", "https://blogsphere-kqf6.onrender.com/api/create-post", {title,content}, {Authorization: `Bearer ${token}`})
   
         console.log("CreatePost api response: ", response)
   
@@ -108,7 +108,7 @@ export const deletePost = async(postId, token) => {
   const toastId = toast.loading("Loading...");
   let result = [];
   try{
-      const response = await apiConnector("DELETE", "http://localhost:4000/api/delete-post", postId, {Authorization: `Bearer ${token}`});
+      const response = await apiConnector("DELETE", "https://blogsphere-kqf6.onrender.com/api/delete-post", postId, {Authorization: `Bearer ${token}`});
       console.log("Delete Post api response: ", response);
       if (!response?.data?.success) {
           throw new Error("Could not delete post")
@@ -126,7 +126,7 @@ export const deletePost = async(postId, token) => {
 export const editPost = async (postId, title, content, token, navigate) => {
   const toastId = toast.loading("Loading...");
   try {
-    const response = await apiConnector("PUT", `http://localhost:4000/api/update-post/${postId}`, { title, content }, { Authorization: `Bearer ${token}` });
+    const response = await apiConnector("PUT", `https://blogsphere-kqf6.onrender.com/api/update-post/${postId}`, { title, content }, { Authorization: `Bearer ${token}` });
     console.log("Edit post API response: ", response);
     if (!response.data.success) {
       throw new Error("Could Not Update Post");
@@ -145,7 +145,7 @@ export const getAllPosts = async () => {
     const toastId = toast.loading("Loading...");
     let result = [];
     try{
-        const response = await apiConnector("GET", "http://localhost:4000/api/posts");
+        const response = await apiConnector("GET", "https://blogsphere-kqf6.onrender.com/api/posts");
         console.log("GetAllPosts api response: ", response);
         if (!response.data.success) {
             throw new Error(response.data.message)
@@ -165,7 +165,7 @@ export const getUserPost = async (token) => {
     const toastId = toast.loading("Loading...");
     let result = [];
     try{
-        const response = await apiConnector("GET", "http://localhost:4000/api/user-posts", null,{ Authorization: `Bearer ${token}`});
+        const response = await apiConnector("GET", "https://blogsphere-kqf6.onrender.com/api/user-posts", null,{ Authorization: `Bearer ${token}`});
         console.log("GetAllPosts api response: ", response);
         if (!response.data.success) {
             throw new Error(response.data.message)
@@ -196,7 +196,7 @@ export const getPostById = async (id) => {
   const toastId = toast.loading("Loading...");
   let result = [];
   try{
-      const response = await apiConnector("GET", `http://localhost:4000/api/postById/${id}`);
+      const response = await apiConnector("GET", `https://blogsphere-kqf6.onrender.com/api/postById/${id}`);
       console.log("getPostById api response: ", response);
       if (!response.data.success) {
           throw new Error(response.data.message)
@@ -216,7 +216,7 @@ export const getUserPostsById = async (id) => {
   const toastId = toast.loading("Loading...");
   let result = [];
   try{
-      const response = await apiConnector("GET", `http://localhost:4000/api/userPostsById/${id}`);
+      const response = await apiConnector("GET", `https://blogsphere-kqf6.onrender.com/api/userPostsById/${id}`);
       console.log("GetAllUserPosts api response: ", response);
       if (!response.data.success) {
           throw new Error(response.data.message)
